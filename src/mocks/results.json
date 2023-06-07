@@ -1,0 +1,149 @@
+{
+  "get": "teams",
+  "parameters": { "search": "barcelona" },
+  "errors": [],
+  "results": 7,
+  "paging": { "current": 1, "total": 1 },
+  "response": [
+    {
+      "team": {
+        "id": 529,
+        "name": "Barcelona",
+        "code": "BAR",
+        "country": "Spain",
+        "founded": 1899,
+        "national": false,
+        "logo": "https://media-3.api-sports.io/football/teams/529.png"
+      },
+      "venue": {
+        "id": 18630,
+        "name": "Spotify Camp Nou",
+        "address": "Carrer d&apos;Ar\u00edstides Maillol",
+        "city": "Barcelona",
+        "capacity": 99787,
+        "surface": "grass",
+        "image": "https://media-1.api-sports.io/football/venues/18630.png"
+      }
+    },
+    {
+      "team": {
+        "id": 712,
+        "name": "Barcelona B",
+        "code": "BAR",
+        "country": "Spain",
+        "founded": 1899,
+        "national": false,
+        "logo": "https://media-1.api-sports.io/football/teams/712.png"
+      },
+      "venue": {
+        "id": 2917,
+        "name": "Estadi Johan Cruyff",
+        "address": "B-23",
+        "city": "Sant Joan Desp\u00ed",
+        "capacity": 6000,
+        "surface": "grass",
+        "image": "https://media-3.api-sports.io/football/venues/2917.png"
+      }
+    },
+    {
+      "team": {
+        "id": 1152,
+        "name": "Barcelona SC",
+        "code": "BAR",
+        "country": "Ecuador",
+        "founded": 1925,
+        "national": false,
+        "logo": "https://media-2.api-sports.io/football/teams/1152.png"
+      },
+      "venue": {
+        "id": 466,
+        "name": "Estadio Monumental Banco Pichincha",
+        "address": "Avenida Barcelona Sporting Club, Tarqui",
+        "city": "Guayaquil",
+        "capacity": 59283,
+        "surface": "grass",
+        "image": "https://media-2.api-sports.io/football/venues/466.png"
+      }
+    },
+    {
+      "team": {
+        "id": 1918,
+        "name": "Barcelona W",
+        "code": null,
+        "country": "Spain",
+        "founded": null,
+        "national": false,
+        "logo": "https://media-2.api-sports.io/football/teams/1918.png"
+      },
+      "venue": {
+        "id": null,
+        "name": null,
+        "address": null,
+        "city": null,
+        "capacity": null,
+        "surface": null,
+        "image": null
+      }
+    },
+    {
+      "team": {
+        "id": 7823,
+        "name": "Barcelona RO",
+        "code": null,
+        "country": "Brazil",
+        "founded": 2016,
+        "national": false,
+        "logo": "https://media-3.api-sports.io/football/teams/7823.png"
+      },
+      "venue": {
+        "id": null,
+        "name": null,
+        "address": null,
+        "city": null,
+        "capacity": null,
+        "surface": null,
+        "image": null
+      }
+    },
+    {
+      "team": {
+        "id": 7885,
+        "name": "Barcelona U19",
+        "code": "BAR",
+        "country": "Spain",
+        "founded": null,
+        "national": false,
+        "logo": "https://media-3.api-sports.io/football/teams/7885.png"
+      },
+      "venue": {
+        "id": null,
+        "name": null,
+        "address": null,
+        "city": null,
+        "capacity": null,
+        "surface": null,
+        "image": null
+      }
+    },
+    {
+      "team": {
+        "id": 15103,
+        "name": "Barcelona BA",
+        "code": null,
+        "country": "Brazil",
+        "founded": null,
+        "national": false,
+        "logo": "https://media-3.api-sports.io/football/teams/15103.png"
+      },
+      "venue": {
+        "id": null,
+        "name": null,
+        "address": null,
+        "city": null,
+        "capacity": null,
+        "surface": null,
+        "image": null
+      }
+    }
+  ]
+}
