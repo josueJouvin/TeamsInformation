@@ -8,6 +8,7 @@ function useInfoTeam (){
   const id = useRef()
   const [idI, setIdI] = useState(null)
   const [, params] = useRoute('/teamInformation/:id');
+  const {getTeams} = useTeams({search: ""})
 
   useEffect(() => {
     id.current = params.id;
@@ -16,9 +17,11 @@ function useInfoTeam (){
 
   useEffect(() => {
     if (id.current === idI) {
-      console.log(id,idI)
+      getTeams({idI})
     }
   },[idI])
+
+  return{id, idI}
 }
 
 const TeamInformation = () => {
