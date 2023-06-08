@@ -4,13 +4,14 @@ import { useSearch } from "./hooks/useSearch";
 import { useTeams } from "./hooks/useTeams";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import debounce from "just-debounce-it";
-import { useCallback } from "react";
-import { Route, Switch } from "wouter";
+import { useCallback} from "react";
+import { Route, Switch} from "wouter";
+
 
 const App = () => {
   const { search, setSearch, error } = useSearch();
-  const { teams, loading, getTeams } = useTeams({ search: search });
-
+  const { teams, loading, getTeams } = useTeams({ search: search});
+  
   const debounceGetMovies = useCallback(
     debounce( search => {
       getTeams({ search });
@@ -27,6 +28,7 @@ const App = () => {
     setSearch(newSearch);
     debounceGetMovies(newSearch);
   };
+  
 
   return (
     <>
@@ -69,7 +71,7 @@ const App = () => {
             <p className="text-center fs-5 fw-bold">Cargando...</p>
           ) : (
             <Route path="/">
-              <Teams teams={teams} />
+              <Teams teams={teams}/>
             </Route>
           )}
           <Route path="/teamInformation/:id" component={Info} />
@@ -80,3 +82,4 @@ const App = () => {
 };
 
 export default App;
+

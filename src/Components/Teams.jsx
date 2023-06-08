@@ -1,7 +1,8 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "wouter";
 
-function ListTeams({ teams }) {
+function ListTeams({ teams}) {
+
   return (
     <>
       <Container>
@@ -54,7 +55,7 @@ function NoTeams() {
   return <p className="text-center fs-3 fw-bold">No se encontraron equipos</p>;
 }
 
-export function Teams({ teams }) {
+export function Teams({ teams}) {
   const hasTeams = teams?.length > 0;
   return hasTeams ? <ListTeams teams={teams} /> : <NoTeams />;
 }

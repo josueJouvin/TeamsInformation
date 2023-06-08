@@ -1,31 +1,8 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import teamInfo from "../mocks/teamInfo.json"
-import { useRoute } from "wouter";
-import { useEffect, useRef, useState } from "react";
-import { useTeams } from "../hooks/useTeams";
-
-function useInfoTeam (){
-  const id = useRef()
-  const [idI, setIdI] = useState(null)
-  const [, params] = useRoute('/teamInformation/:id');
-  const {getTeams} = useTeams({search: ""})
-
-  useEffect(() => {
-    id.current = params.id;
-    setIdI(params.id);
-  }, [params.id]);
-
-  useEffect(() => {
-    if (id.current === idI) {
-      getTeams({idI})
-    }
-  },[idI])
-
-  return{id, idI}
-}
 
 const TeamInformation = () => {
-  useInfoTeam()
+  
   return (
     <Container>
       <Row>
@@ -61,5 +38,5 @@ const TeamInformation = () => {
 };
 
 export function Info() {
-   return  <TeamInformation />
+   return  <TeamInformation/>
 }

@@ -1,13 +1,16 @@
 
 export const informationTeam = async({id}) =>{
-    const options = {
+    /*
+  const options = {
         headers: {
           "x-rapidapi-host": "v3.football.api-sports.io",
           "x-rapidapi-key": "56d0cebffc5e10bb00e36025d0d56193"
         },
     }
-    
+    */
+
     try{
+      /*
         const response = await fetch(`https://v3.football.api-sports.io/players/squads?team=${id}`,options)
         const json = await response.json()
         const players = json.response[0].players
@@ -19,7 +22,8 @@ export const informationTeam = async({id}) =>{
           number: player.number,
           position: player.position,
           photo: player.photo,
-        }))
+        }))*/
+        await console.log("desde la api de informacion")
     }catch(e){
         throw new Error("Error en la extracion de info")
     }
