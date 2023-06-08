@@ -9,7 +9,7 @@ import { Route, Switch } from "wouter";
 
 const App = () => {
   const { search, setSearch, error } = useSearch();
-  const { teams, loading, getTeams } = useTeams({ search: search });
+  const { teams, loading, getTeams } = useTeams({ search });
 
   const debounceGetMovies = useCallback(
     debounce( search => {

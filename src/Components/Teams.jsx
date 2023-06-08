@@ -1,10 +1,7 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "wouter";
-function ListTeams({ teams }) {
 
-  const handleClick = (id) =>{
-    console.log(id)
-  }
+function ListTeams({ teams }) {
   return (
     <>
       <Container>
@@ -40,7 +37,6 @@ function ListTeams({ teams }) {
                   <Link
                     to={`/teamInformation/${team.id}`}
                     className="w-100 mt-2"
-                    onClick={()=> handleClick(team.id)}
                   >
                     Mas Información
                   </Link>
