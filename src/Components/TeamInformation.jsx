@@ -1,12 +1,45 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
-import teamInfo from "../mocks/teamInfo.json"
+import { useEffect,  useState } from "react";
+import { informationTeam } from "../services/informationTeam";
+import { useRoute } from "wouter";
 
-const TeamInformation = () => {
-  
+export const TeamInformation = ({players,previusId,setPlayers}) => {
+  const [, params] = useRoute('/teamInformation/:id');
+  const { id } = params;
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (id && id !== previusId.current && players.length === 0) {
+        try {
+          setLoading(true);
+          console.log(id);
+          const teamPlayers = await informationTeam({ id });
+          previusId.current = id;
+          setPlayers(teamPlayers);
+        } catch (e) {
+          console.log(e);
+        } finally {
+          setLoading(false);
+        }
+      }else{
+        setLoading(false)
+      }
+    };
+    fetchData()
+  }, []);
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (!id) {
+    return <div>Error: no se encontró el equipo</div>;
+  }
   return (
     <Container>
       <Row>
-      {teamInfo.response[0].players.map((player) => (
+      {players.map((player) => (
           <Col md={6} lg={4} key={player.id}>
             <Card className="m-4">
               <Card.Img
@@ -35,8 +68,4 @@ const TeamInformation = () => {
       </Row>
     </Container>
   );
-};
-
-export function Info() {
-   return  <TeamInformation/>
 }
