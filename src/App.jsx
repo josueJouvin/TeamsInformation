@@ -4,14 +4,14 @@ import { useSearch } from "./hooks/useSearch";
 import { useTeams } from "./hooks/useTeams";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import debounce from "just-debounce-it";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState} from "react";
 import { Route, Switch } from "wouter";
 
 const App = () => {
-  const [players, setPlayers] = useState([]);
   const previusId = useRef("");
+  const [players, setPlayers] = useState([]);
   const { search, setSearch, error } = useSearch();
-  const { teams, loading, getTeams } = useTeams({ search: search });
+  const { teams, loading, getTeams} = useTeams({ search: search});
 
   const debounceGetMovies = useCallback(
     debounce((search) => {
@@ -67,20 +67,19 @@ const App = () => {
       </Route>
       <main>
         <Switch>
+        <Route path="/teamInformation/:id" exact >
+            <TeamInformation
+              previusId={previusId}
+              players={players}
+              setPlayers={setPlayers}
+            />
+          </Route>
           <Route path="/" exact>
             {loading ? (
               <p className="text-center fs-5 fw-bold">Cargando...</p>
             ) : (
               <Teams teams={teams} />
             )}
-          </Route>
-          <Route path="/teamInformation/:id" exact>
-            {console.log("renderizando")}
-            <TeamInformation
-              players={players}
-              previusId={previusId}
-              setPlayers={setPlayers}
-            />
           </Route>
         </Switch>
       </main>

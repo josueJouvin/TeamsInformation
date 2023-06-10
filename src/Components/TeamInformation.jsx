@@ -1,35 +1,21 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useEffect,  useState } from "react";
-import { informationTeam } from "../services/informationTeam";
+import { useEffect, useState } from "react";
 import { useRoute } from "wouter";
+import { useTeams } from "../hooks/useTeams";
 
-export const TeamInformation = ({players,previusId,setPlayers}) => {
-  const [, params] = useRoute('/teamInformation/:id');
+export const TeamInformation = ({ previusId, players, setPlayers}) => {
+  const [, params] = useRoute("/teamInformation/:id");
   const { id } = params;
-  const [loading, setLoading] = useState(true);
-
+  const { getTeams, loading} = useTeams({previusId,setPlayers});
+  
   useEffect(() => {
-    const fetchData = async () => {
-      if (id && id !== previusId.current && players.length === 0) {
-        try {
-          setLoading(true);
-          console.log(id);
-          const teamPlayers = await informationTeam({ id });
-          previusId.current = id;
-          setPlayers(teamPlayers);
-        } catch (e) {
-          console.log(e);
-        } finally {
-          setLoading(false);
-        }
-      }else{
-        setLoading(false)
-      }
-    };
-    fetchData()
-  }, []);
+    getTeams({ id });
+    previusId.current = id
+  },[]);
+
 
   if (loading) {
+    console.log(loading)
     return <div>Cargando...</div>;
   }
 
@@ -39,7 +25,7 @@ export const TeamInformation = ({players,previusId,setPlayers}) => {
   return (
     <Container>
       <Row>
-      {players.map((player) => (
+        {players.map((player) => (
           <Col md={6} lg={4} key={player.id}>
             <Card className="m-4">
               <Card.Img
@@ -68,4 +54,4 @@ export const TeamInformation = ({players,previusId,setPlayers}) => {
       </Row>
     </Container>
   );
-}
+};
