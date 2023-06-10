@@ -10,8 +10,6 @@ export const informationTeam = async({id}) =>{
         const response = await fetch(`https://v1.american-football.api-sports.io/players?season=2022&team=${id}`,options)
         const json = await response.json()
         const players = json.response
-        console.log(id)
-        console.log("llamando api")
         return players.map(player => ({
           id: player.id,
           name: player.name,

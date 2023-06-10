@@ -1,31 +1,21 @@
-import { informationTeam } from "../services/informationTeam";
 import { searchTeams } from "../services/teams";
 import { useCallback, useRef, useState } from "react";
 
-export function useTeams({ search, previusId, setPlayers }) {
+export function useTeams({ search }) {
   const [teams, setTeams] = useState([]);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const previusSearch = useRef(search);
 
-  const getTeams = useCallback(async ({ search, id }) => {
+  const getTeams = useCallback(async ({ search }) => {
+    if (search === previusSearch.current) return;
 
     try {
       setLoading(true);
       setError(null);
-      if (search && search !== previusSearch.current) {
-        previusSearch.current = search;
-        const newTeams = await searchTeams({ search });
-        setTeams(newTeams);
-      }
-      
-      if ( id !== previusId.current) {
-        previusId.current = id
-        const teamPlayers = await informationTeam({ id });
-        setPlayers(teamPlayers);
-      }
-
+      previusSearch.current = search;
+      const newTeams = await searchTeams({ search });
+      setTeams(newTeams);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -33,5 +23,5 @@ export function useTeams({ search, previusId, setPlayers }) {
     }
   }, []);
 
-  return { teams, loading, getTeams};
+  return { teams, loading, getTeams };
 }

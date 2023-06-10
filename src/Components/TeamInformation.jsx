@@ -1,27 +1,11 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { useRoute } from "wouter";
-import { useTeams } from "../hooks/useTeams";
 
-export const TeamInformation = ({ previusId, players, setPlayers}) => {
-  const [, params] = useRoute("/teamInformation/:id");
-  const { id } = params;
-  const { getTeams, loading} = useTeams({previusId,setPlayers});
-  
-  useEffect(() => {
-    getTeams({ id });
-    previusId.current = id
-  },[]);
+export const TeamInformation = ({players,load}) => {
 
-
-  if (loading) {
-    console.log(loading)
+  if (load) {
     return <div>Cargando...</div>;
   }
 
-  if (!id) {
-    return <div>Error: no se encontró el equipo</div>;
-  }
   return (
     <Container>
       <Row>

@@ -14,7 +14,6 @@ export const searchTeams = async ({ search }) => {
     );
     const json = await response.json();
     const teams = json.response;
-      console.log("renderizando api")
     return teams?.map((team) => ({
       id: team.id,
       name: team.name,

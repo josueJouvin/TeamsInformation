@@ -4,14 +4,15 @@ import { useSearch } from "./hooks/useSearch";
 import { useTeams } from "./hooks/useTeams";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import debounce from "just-debounce-it";
-import { useCallback, useRef, useState} from "react";
+import { useCallback} from "react";
 import { Route, Switch } from "wouter";
+import { useId } from "./hooks/useId";
+
 
 const App = () => {
-  const previusId = useRef("");
-  const [players, setPlayers] = useState([]);
+  const {players, load} = useId()
   const { search, setSearch, error } = useSearch();
-  const { teams, loading, getTeams} = useTeams({ search: search});
+  const { teams, loading, getTeams} = useTeams({search});
 
   const debounceGetMovies = useCallback(
     debounce((search) => {
@@ -69,9 +70,8 @@ const App = () => {
         <Switch>
         <Route path="/teamInformation/:id" exact >
             <TeamInformation
-              previusId={previusId}
-              players={players}
-              setPlayers={setPlayers}
+             players={players}
+             load={load}
             />
           </Route>
           <Route path="/" exact>
