@@ -39,7 +39,7 @@ function ListTeams({ teams}) {
                     to={`/teamInformation/${team.id}`}
                     className="w-100 mt-2 btn fs-5 fw-bold btn-warning"
                   >
-                    Mas Información
+                    Ver Jugadores
                   </Link>
                 </Card.Body>
               </Card>
