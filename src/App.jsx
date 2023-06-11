@@ -1,18 +1,17 @@
 import { Teams } from "./Components/Teams";
-import { TeamInformation } from "./Components/TeamInformation";
+import { InfoTeams } from "./Components/TeamInformation";
 import { useSearch } from "./hooks/useSearch";
 import { useTeams } from "./hooks/useTeams";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import debounce from "just-debounce-it";
-import { useCallback} from "react";
+import { useCallback } from "react";
 import { Route, Switch } from "wouter";
-import { useId } from "./hooks/useId";
-
+import { useIdi } from "./hooks/useIdi";
 
 const App = () => {
-  const {players, load} = useId()
+  const { players, load } = useIdi();
   const { search, setSearch, error } = useSearch();
-  const { teams, loading, getTeams} = useTeams({search});
+  const { teams, loading, getTeams } = useTeams({ search });
 
   const debounceGetMovies = useCallback(
     debounce((search) => {
@@ -32,7 +31,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div>
       <Route path="/">
         <header className="py-3 bg-primary">
           <h1 className="text-center text-light">Soccer Team Information</h1>
@@ -43,11 +42,12 @@ const App = () => {
             <Row className="justify-contend-center align-items-end">
               <Col md={9}>
                 <Form.Group>
-                  <Form.Label className="fs-4 fw-bold" htmlFor="text">
+                  <Form.Label className="fs-3 fw-bold text-light" htmlFor="text">
                     Busca tus equipos favoritos por Nombre o Pais:
                   </Form.Label>
                   <Form.Control
-                    style={{ borderColor: error && "red" }}
+                    className="fs-5"
+                    style={{ borderColor: error && "red"}}
                     value={search}
                     onChange={handleChange}
                     id="text"
@@ -57,7 +57,7 @@ const App = () => {
                 </Form.Group>
               </Col>
               <Col md={3}>
-                <Button className="w-100" type="submit">
+                <Button className="w-100 fs-5" type="submit">
                   Buscar equipos
                 </Button>
               </Col>
@@ -68,22 +68,23 @@ const App = () => {
       </Route>
       <main>
         <Switch>
-        <Route path="/teamInformation/:id" exact >
-            <TeamInformation
-             players={players}
-             load={load}
-            />
+          <Route path="/teamInformation/:id" exact>
+            {load ? (
+              <p className="text-center fs-3 fw-bold text-light">Cargando...</p>
+            ) : (
+              <InfoTeams players={players} />
+            )}
           </Route>
           <Route path="/" exact>
             {loading ? (
-              <p className="text-center fs-5 fw-bold">Cargando...</p>
+              <p className="text-center fs-3 fw-bold text-light">Cargando...</p>
             ) : (
               <Teams teams={teams} />
             )}
           </Route>
         </Switch>
       </main>
-    </>
+    </div>
   );
 };
 

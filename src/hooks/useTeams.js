@@ -8,6 +8,7 @@ export function useTeams({ search }) {
   const previusSearch = useRef(search);
 
   const getTeams = useCallback(async ({ search }) => {
+   
     if (search === previusSearch.current) return;
 
     try {
